@@ -29,9 +29,21 @@ $sql = new sql();
 //echo json_encode($search);
 
 //Carrega um usuario usando o login e a senha
+//$usuario = new Usuario();
+//$usuario->login("root3","12345");
 
-$usuario = new Usuario();
-$usuario->login("root3","12345");
+//echo $usuario;
 
-echo $usuario;
+
+//V1.0
+//$aluno = new Usuario();
+//$aluno->setDeslogin("Aluno2");
+//$aluno->setDessenha("4321");
+
+//V1.1
+$aluno = new Usuario("Aluno2.0","@alun0");
+
+$aluno->insert();
+
+echo $aluno;
 ?>

@@ -49,12 +49,8 @@ private $dtcadastro;
 
             if(count($result)>0){
 
-                $row=$result[0];
+                $this->setData($results[0]);
 
-                $this->setIdUsuario($row['idusuario']);
-                $this->setDeslogin($row['deslogin']);
-                $this->setDessenha($row['dessenha']);
-                $this->setDtCadastro(new DateTime($row['dtcadastro']));
             }
 
         }
@@ -96,17 +92,42 @@ private $dtcadastro;
 
             if(count($result)>0){
 
-                $row=$result[0];
+                $this->setData($results[0]);
 
-                $this->setIdUsuario($row['idusuario']);
-                $this->setDeslogin($row['deslogin']);
-                $this->setDessenha($row['dessenha']);
-                $this->setDtCadastro(new DateTime($row['dtcadastro']));
+            } else{
+                throw new Exception("login ou senha inválidos");
+            }
+        }
+
+        public function setData($data){
+            $this->setIdUsuario($data['idusuario']);
+            $this->setDeslogin($data['deslogin']);
+            $this->setDessenha($data['dessenha']);
+            $this->setDtCadastro(new DateTime($data['dtcadastro']));
+        }
+
+        public function insert(){
+            $sql = new sql();
+
+            $results = $sql->select("CALL tb_usuarios_insert(:LOGIN,:PASSWORD)", array( //procedure de mysql
+                ":LOGIN"=>$this->getDeslogin(),
+                ":PASSWORD"=>$this->getDessenha()
+            ));
+
+            if(count($results)>0){
+
+                $this->setData($results[0]);
+
             } else{
                 throw new Exception("login ou senha inválidos");
             }
 
+        }
 
+        public function __construct($login = "", $password = ""){
+
+            $this->setDeslogin($login);
+            $this->setDessenha($password);
         }
     }  
 ?>
