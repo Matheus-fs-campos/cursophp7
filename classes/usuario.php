@@ -142,7 +142,19 @@ private $dtcadastro;
                 ':PASSWORD'=>$this ->getDessenha(),
                 ':ID'=>$this->getIdUsuario()
             ));
+        }
 
+        public function delete(){
+            $sql = new sql();
+
+            $sql->querry("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+                ':ID'=>$this->getIdUsuario()
+            ));
+
+            $this-> setIdUsuario(0);
+            $this-> setDeslogin("");
+            $this-> setDessenha("");
+            $this-> setDtCadastro(new DateTime());
         }
     }  
 ?>

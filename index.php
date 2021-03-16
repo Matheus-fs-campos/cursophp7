@@ -47,14 +47,20 @@ $sql = new sql();
 
 //echo $aluno;
 
-//UPDATE
+//UPDATE-alterar um usuario
+//$usuario = new Usuario();
+
+//$usuario->loadById(8);
+
+//$usuario->update("Professor","senha1234");
+
+//echo $usuario;
+
 $usuario = new Usuario();
 
-$usuario->loadById(8);
+$usuario->loadById(2);
 
-$usuario->update("Professor","senha1234");
+$usuario->delete();
 
 echo $usuario;
-
-//
 ?>
