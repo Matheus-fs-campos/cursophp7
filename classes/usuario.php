@@ -49,7 +49,7 @@ private $dtcadastro;
 
             if(count($result)>0){
 
-                $this->setData($results[0]);
+                $this->setData($result[0]);
 
             }
 
@@ -128,6 +128,21 @@ private $dtcadastro;
 
             $this->setDeslogin($login);
             $this->setDessenha($password);
+        }
+
+        public function update($login, $password){
+
+            $this->setDeslogin($login);
+            $this->setDessenha($password);
+
+            $sql = new sql();
+
+            $sql-> querry("UPDATE tb_usuarios SET  deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID", array(
+                ':LOGIN'=>$this->getDeslogin(),
+                ':PASSWORD'=>$this ->getDessenha(),
+                ':ID'=>$this->getIdUsuario()
+            ));
+
         }
     }  
 ?>

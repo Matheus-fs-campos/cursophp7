@@ -34,16 +34,27 @@ $sql = new sql();
 
 //echo $usuario;
 
-
+//INSERT  
 //V1.0
 //$aluno = new Usuario();
 //$aluno->setDeslogin("Aluno2");
 //$aluno->setDessenha("4321");
 
 //V1.1
-$aluno = new Usuario("Aluno2.0","@alun0");
+//$aluno = new Usuario("Aluno2.0","@alun0");
 
-$aluno->insert();
+//$aluno->insert();
 
-echo $aluno;
+//echo $aluno;
+
+//UPDATE
+$usuario = new Usuario();
+
+$usuario->loadById(8);
+
+$usuario->update("Professor","senha1234");
+
+echo $usuario;
+
+//
 ?>
